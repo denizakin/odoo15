@@ -4,10 +4,11 @@
         <field name="name">mad.product.form</field>
         <field name="model">product.product</field>
         <field name="arch" type="xml">
-            <form string="Stok/Hizmettt">
+            <form string="Stok">
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="gtipno"/>
                     </group>
                 </sheet>
             </form>

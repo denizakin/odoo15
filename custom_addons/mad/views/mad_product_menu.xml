@@ -7,9 +7,8 @@
         <field name="view_mode">tree,kanban,form</field>
         <field name="view_ids"
                eval="[(5, 0, 0),
-                (0, 0, {'view_mode': 'tree', 'view_id': ref('mad_product_tree_view')}),
-                (0, 0, {'view_mode': 'kanban', 'view_id': ref('product.product_kanban_view')}),
-                (0, 0, {'view_mode': 'form', 'view_id': ref('mad_product_form_view')})]"/>
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('mad_product_tree_view')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('mad_product_form_view')})]"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Haydi ilk stoğumuzu oluşturalım!
@@ -33,28 +32,33 @@
               name="Stok"
               sequence="10"
     />
+
     <menuitem id="menu_mad_stok_hizmet_kartlar"
               name="Kartlar"
               parent="menu_mad_stok_hizmet_main"
               sequence="10"
     />
+
     <menuitem id="menu_mad_stok_stok_hizmet"
               name="Stok/Hizmet"
               parent="menu_mad_stok_hizmet_kartlar"
               action="menu_mad_stok_stok_hizmet_action"
               sequence="10"
     />
+
     <menuitem id="menu_mad_stok_depo"
               name="Depolar"
               parent="menu_mad_stok_hizmet_kartlar"
               action="menu_mad_stok_depo_action"
               sequence="10"
     />
+
     <menuitem id="menu_mad_stok_hizmet_hareketler"
               name="Hareketler"
               parent="menu_mad_stok_hizmet_main"
               sequence="10"
     />
+
     <menuitem id="menu_mad_stok_hizmet_listeler"
               name="Listeler"
               parent="menu_mad_stok_hizmet_main"
