@@ -4,12 +4,100 @@
         <field name="name">mad.product.form</field>
         <field name="model">product.product</field>
         <field name="arch" type="xml">
-            <form string="Stok">
+            <form string="Stok/Hizmet">
+                <header>
+                    <button string="Etiketleri Yazdır" type="object" name="action_open_label_layout"/>
+                </header>
                 <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="gtipno"/>
-                    </group>
+                    <field name="product_variant_count" invisible="1"/>
+                    <field name="is_product_variant" invisible="1"/>
+                    <field name="attribute_line_ids" invisible="1"/>
+                    <field name="type" invisible="1"/>
+                    <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+                    <div class="oe_title">
+                        <label for="name" string="Stok/Hizmet Adı"/>
+                        <h1>
+                            <div class="d-flex">
+                                <field name="priority" widget="priority" class="mr-3"/>
+                                <field class="o_text_overflow" name="name" placeholder="Ör. 6'lı Yemek Takımı"/>
+                            </div>
+                        </h1>
+                    </div>
+                    <style>
+                        div[name="options"] .o_field_boolean {
+                            margin-left: 10px;
+                            margin-right: 0px;
+                        }
+                    </style>
+                    <notebook>
+                        <page string="Genel Bilgi" name="general_information">
+                            <group>
+                                <group name="group_general">
+                                    <field name="uom_id" groups="uom.group_uom" options="{'no_create': True}"/>
+                                    <field name="gtipno"/>
+                                </group>
+                                <group name="codes">
+                                    <field name="default_code"/>
+                                    <field name="barcode"/>
+                                </group>
+                            </group>
+                            <group string="Şirket İçi Notlar">
+                                <field name="description" nolabel="1" placeholder="Bu not sadece şirket içi iletişim içindir."/>
+                            </group>
+                        </page>
+                        <page name="variants" string="Özellikler ve Çeşitler" groups="product.group_product_variant">
+                            <field name="attribute_line_ids" widget="one2many" context="{'show_attribute': False}">
+                                <tree string="Çeşitler" editable="bottom" decoration-info="value_count &lt;= 1">
+                                    <field name="value_count" invisible="1"/>
+                                    <field name="attribute_id" attrs="{'readonly': [('id', '!=', False)]}"/>
+                                    <field name="value_ids" widget="many2many_tags" options="{'no_create_edit': True, 'color_field': 'color'}" context="{'default_attribute_id': attribute_id, 'show_attribute': False}"/>
+                                    <button string="Yapılandır" class="float-right btn-secondary" type="object" name="action_open_attribute_values" groups="product.group_product_variant"/>
+                                </tree>
+                            </field>
+                            <p class="oe_grey oe_edit_only">
+                                <strong>Dikkat</strong>: özellik ekleyip çıkarmak mevcut özellik ve
+                                çeşitleri silip tekrar oluşturur, bu özelliklerden
+                                türeyen özelleştirmeleri kaybetmenize neden olabilir.
+                            </p>
+                        </page>
+                        <page string="Satış" name="sales">
+                            <group name="sale">
+                                <field name="list_price" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                <field name="taxes_id" widget="many2many_tags" />
+                            </group>
+                            <group>
+                                <group string="Satış Açıklama" name="description">
+                                    <field name="description_sale" nolabel="1" placeholder="Bu not satış sipariş ve faturalarına eklenir."/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Satınalma" name="purchase">
+                            <group name="purchase">
+                                <group string="Tedarikçi Faturaları" name="bill">
+                                    <field name="supplier_taxes_id" widget="many2many_tags"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Envanter" name="inventory" groups="product.group_stock_packaging">
+                            <group name="inventory">
+                                <group name="group_lots_and_weight" string="Lojistik">
+                                    <label for="weight" attrs="{'invisible':[('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
+                                    <div class="o_row" name="weight" attrs="{'invisible':[('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}">
+                                        <field name="weight"/>
+                                        <span><field name="weight_uom_name"/></span>
+                                    </div>
+                                    <label for="volume" attrs="{'invisible':[('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
+                                    <div class="o_row" name="volume" attrs="{'invisible':[('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}">
+                                        <field name="volume" string="Volume"/>
+                                        <span><field name="volume_uom_name"/></span>
+                                    </div>
+                                </group>
+                            </group>
+                            <group name="packaging" string="Paketleme" colspan="4" attrs="{'invisible':['|', ('type', 'not in', ['product', 'consu']), ('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}" groups="product.group_stock_packaging">
+                                <field name="packaging_ids" nolabel="1" context="{'tree_view_ref':'product.product_packaging_tree_view2'}"/>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
