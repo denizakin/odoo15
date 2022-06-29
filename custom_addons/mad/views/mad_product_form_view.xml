@@ -13,6 +13,63 @@
                     <field name="is_product_variant" invisible="1"/>
                     <field name="attribute_line_ids" invisible="1"/>
                     <field name="type" invisible="1"/>
+                    <field name="show_on_hand_qty_status_button" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                    <field name="show_forecasted_qty_status_button" invisible="1" modifiers="{&quot;invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object" name="action_open_quants" class="oe_stat_button" icon="fa-cubes">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value" widget="statinfo">
+                                    <field name="qty_available" widget="statinfo" nolabel="1" class="mr4" modifiers="{&quot;readonly&quot;: true}"/>
+                                    <field name="uom_name" modifiers="{&quot;readonly&quot;: true}"/>
+                                </span>
+                                <span class="o_stat_text">Eldeki</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" name="open_pricelist_rules" icon="fa-list-ul" groups="product.group_product_pricelist" type="object">
+                               <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="pricelist_item_count"/>
+                                    </span>
+                                    <span attrs="{'invisible': [('pricelist_item_count', '=', 1)]}">
+                                        Fiyatlar
+                                    </span>
+                                    <span attrs="{'invisible': [('pricelist_item_count', '!=', 1)]}">
+                                        Fiyat
+                                    </span>
+                               </div>
+                        </button>
+                        <button type="object"
+                            name= "action_view_stock_move_lines"
+                            class="oe_stat_button" icon="fa-exchange"
+                            groups="stock.group_stock_user">
+                            <div class="o_field_widget o_stat_info mr4">
+                                <span class="o_stat_text">Giriş:</span>
+                                <span class="o_stat_text">Çıkış:</span>
+                            </div>
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value"><field name="nbr_moves_in"/></span>
+                                <span class="o_stat_value"><field name="nbr_moves_out"/></span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" name="action_view_sales" type="object" icon="fa-signal" help="Son 1 yıldaki satış" groups="sales_team.group_sale_salesman">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="sales_count" widget="statinfo" nolabel="1" class="mr4"/>
+                                    <field name="uom_name"/>
+                                </span>
+                                <span class="o_stat_text">Satıldı</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" name="action_view_po" type="object" icon="fa-credit-card" help="Son 1 yıldaki satınalma">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="purchased_product_qty" widget="statinfo" nolabel="1" class="mr4"/>
+                                    <field name="uom_name"/>
+                                </span>
+                                <span class="o_stat_text">Alındı</span>
+                            </div>
+                        </button>
+                    </div>
                     <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
                     <div class="oe_title">
                         <label for="name" string="Stok/Hizmet Adı"/>
@@ -115,6 +172,11 @@
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" modifiers="{}"/>
+                    <field name="activity_ids" modifiers="{}"/>
+                    <field name="message_ids" modifiers="{}"/>
+                </div>
             </form>
         </field>
     </record>
