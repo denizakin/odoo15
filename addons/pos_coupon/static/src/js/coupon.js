@@ -22,7 +22,7 @@ odoo.define('pos_coupon.pos', function (require) {
     const session = require('web.session');
     const concurrency = require('web.concurrency');
     const { Gui } = require('point_of_sale.Gui');
-    const { float_is_zero } = require('web.utils');
+    const { float_is_zero,round_decimals } = require('web.utils');
 
     const dp = new concurrency.DropPrevious();
 
@@ -253,8 +253,8 @@ odoo.define('pos_coupon.pos', function (require) {
         // OVERIDDEN METHODS
 
         initialize: function () {
-            let res = _order_super.initialize.apply(this, arguments);
-            res.on(
+            _order_super.initialize.apply(this, arguments);
+            this.on(
                 'update-rewards',
                 () => {
                     if (!this.pos.config.use_coupon_programs) return;
@@ -266,11 +266,11 @@ odoo.define('pos_coupon.pos', function (require) {
                         this.trigger('rewards-updated');
                     }).catch(() => { /* catch the reject of dp when calling `add` to avoid unhandledrejection */ });
                 },
-                res
+                this
             );
-            res.on('reset-coupons', res.resetCoupons, res);
-            res._initializePrograms();
-            return res;
+            this.on('reset-coupons', this.resetCoupons, this);
+            this._initializePrograms();
+            return this;
         },
         init_from_JSON: function (json) {
             this.bookedCouponCodes = this.bookedCouponCodes ? this.order.bookedCouponCodes : {};
@@ -882,7 +882,7 @@ odoo.define('pos_coupon.pos', function (require) {
                     [
                         new Reward({
                             product: discountLineProduct,
-                            unit_price: -rewardProduct.lst_price,
+                            unit_price: -round_decimals(rewardProduct.get_price(this.pricelist, freeQuantity), this.pos.currency.decimals),
                             quantity: freeQuantity,
                             program: program,
                             tax_ids: rewardProduct.taxes_id,
@@ -934,9 +934,9 @@ odoo.define('pos_coupon.pos', function (require) {
                 if (program.discount_specific_product_ids.has(line.get_product().id)) {
                     const key = this._getGroupKey(line);
                     if (!(key in amountsToDiscount)) {
-                        amountsToDiscount[key] = line.get_quantity() * line.price;
+                        amountsToDiscount[key] = line.get_base_price();
                     } else {
-                        amountsToDiscount[key] += line.get_quantity() * line.price;
+                        amountsToDiscount[key] += line.get_base_price();
                     }
                     productIdsToAccount.add(line.get_product().id);
                 }
@@ -986,9 +986,9 @@ odoo.define('pos_coupon.pos', function (require) {
             for (let line of this._getRegularOrderlines()) {
                 const key = this._getGroupKey(line);
                 if (!(key in amountsToDiscount)) {
-                    amountsToDiscount[key] = line.get_quantity() * line.price;
+                    amountsToDiscount[key] = line.get_base_price();
                 } else {
-                    amountsToDiscount[key] += line.get_quantity() * line.price;
+                    amountsToDiscount[key] += line.get_base_price();
                 }
                 productIdsToAccount.add(line.get_product().id);
             }

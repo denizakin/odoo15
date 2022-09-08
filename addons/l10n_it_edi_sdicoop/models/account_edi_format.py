@@ -51,8 +51,7 @@ class AccountEdiFormat(models.Model):
                     # should not happen as the file has been checked by SdiCoop
                     _logger.info('Received file badly formatted, skipping: \n %s', file)
                     continue
-
-                invoice = self.env['account.move'].create({'move_type': 'in_invoice'})
+                invoice = self.env['account.move'].with_company(company).create({'move_type': 'in_invoice'})
                 attachment = self.env['ir.attachment'].create({
                     'name': fattura['filename'],
                     'raw': file,
@@ -111,7 +110,12 @@ class AccountEdiFormat(models.Model):
         """ _is_required_for_invoice for SdiCoop.
             OVERRIDE
         """
-        return invoice.is_sale_document() and invoice.country_code == 'IT'
+        is_self_invoice = self._l10n_it_edi_is_self_invoice(invoice)
+        return (
+            (invoice.is_sale_document() or (is_self_invoice and invoice.is_purchase_document()))
+            and invoice.l10n_it_send_state not in ('sent', 'delivered', 'delivered_accepted')
+            and invoice.country_code == 'IT'
+        )
 
     def _support_batching(self, move=None, state=None, company=None):
         # OVERRIDE
@@ -218,7 +222,6 @@ class AccountEdiFormat(models.Model):
                     'error': _('The invoice was sent to FatturaPA, but we are still awaiting a response. Click the link above to check for an update.'),
                     'blocking_level': 'info',
                 }
-                proxy_acks.append(id_transaction)
                 continue
             elif state == 'not_found':
                 # Invoice does not exist on proxy. Either it does not belong to this proxy_user or it was not created correctly when

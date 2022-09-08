@@ -6,7 +6,7 @@
     'installable': True,
     'license': 'LGPL-3',
     'version': '15.0.1',
-    'depends': ['base','product','stock','sale'],
+    'depends': ['base','product','stock','sale','purchase'],
 
     'data': [
         'views/mad_product_form_view.xml',

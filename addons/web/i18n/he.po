@@ -12,6 +12,8 @@
 # Jonathan Spier, 2022
 # Lilach Gilliam <lilach.gilliam@gmail.com>, 2022
 # Martin Trigaux, 2022
+# Netta Waizer, 2022
+# NoaFarkash, 2022
 # 
 msgid ""
 msgstr ""
@@ -19,7 +21,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-24 08:20+0000\n"
 "PO-Revision-Date: 2021-09-14 12:27+0000\n"
-"Last-Translator: Martin Trigaux, 2022\n"
+"Last-Translator: NoaFarkash, 2022\n"
 "Language-Team: Hebrew (https://www.transifex.com/odoo/teams/41243/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -236,6 +238,8 @@ msgid ""
 "<span class=\"text-nowrap\">$ <span "
 "class=\"oe_currency_value\">11,750.00</span></span>"
 msgstr ""
+"<span class=\"text-nowrap\">$<span "
+"class=\"oe_currency_value\">11,750.00</span></span>"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
@@ -243,16 +247,18 @@ msgid ""
 "<span class=\"text-nowrap\">$ <span "
 "class=\"oe_currency_value\">7,500.00</span></span>"
 msgstr ""
+"<span class=\"text-nowrap\">$<span "
+"class=\"oe_currency_value\">7,500.00</span></span>"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
 msgid "<span class=\"text-nowrap\">1,500.00</span>"
-msgstr ""
+msgstr "<span class=\"text-nowrap\">1,500.00</span>"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
 msgid "<span class=\"text-nowrap\">2,350.00</span>"
-msgstr ""
+msgstr "<span class=\"text-nowrap\">2,350.00</span>"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
@@ -279,7 +285,7 @@ msgstr "<span itemprop=\"name\">דן דיזיין</span>"
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
 msgid "<span>$ <span class=\"oe_currency_value\">19,250.00</span></span>"
-msgstr ""
+msgstr "<span>$<span class=\"oe_currency_value\">19,250.00</span></span>"
 
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.report_invoice_wizard_preview
@@ -1267,7 +1273,7 @@ msgstr "העתק ללוח"
 #. module: web
 #: model_terms:ir.ui.view,arch_db:web.frontend_layout
 msgid "Copyright &amp;copy;"
-msgstr ""
+msgstr "זכויות יוצרים &amp;copy;"
 
 #. module: web
 #. openerp-web
@@ -1798,7 +1804,7 @@ msgstr "דוא\"ל"
 #: code:addons/web/static/src/core/debug/profiling/profiling_item.xml:0
 #, python-format
 msgid "Enable profiling"
-msgstr ""
+msgstr "אפשר יצירת פרופילים"
 
 #. module: web
 #: code:addons/web/controllers/main.py:0
@@ -2088,7 +2094,7 @@ msgstr ""
 #. module: web
 #: model:ir.model.fields,help:web.field_base_document_layout__company_details
 msgid "Header text displayed at the top of all reports."
-msgstr ""
+msgstr "טקסט כותרת מוצג בראש כל הדוחות."
 
 #. module: web
 #. openerp-web
@@ -2247,7 +2253,7 @@ msgstr ""
 #: code:addons/web/static/src/legacy/js/widgets/attach_document.js:0
 #, python-format
 msgid "Invalid fields:"
-msgstr ""
+msgstr "שדות לא חוקיים:"
 
 #. module: web
 #: code:addons/web/controllers/main.py:0
@@ -2650,8 +2656,8 @@ msgstr "טקסט מרובה שורות"
 #. openerp-web
 #: code:addons/web/static/src/webclient/user_menu/user_menu_items.js:0
 #, python-format
-msgid "My Odoo.com.account"
-msgstr ""
+msgid "My Odoo.com account"
+msgstr "החשבון Odoo שלי"
 
 #. module: web
 #. openerp-web
@@ -3395,7 +3401,7 @@ msgstr "דף קודם"
 #. module: web
 #: model:ir.model.fields,field_description:web.field_base_document_layout__primary_color
 msgid "Primary Color"
-msgstr ""
+msgstr "צבע יסוד"
 
 #. module: web
 #. openerp-web
@@ -3668,7 +3674,7 @@ msgstr "כותרת תחתונה של הדו\"ח"
 #. module: web
 #: model:ir.model.fields,field_description:web.field_base_document_layout__report_layout_id
 msgid "Report Layout"
-msgstr ""
+msgstr "דווח על פריסה"
 
 #. module: web
 #: model:ir.actions.report,name:web.action_report_layout_preview
@@ -4085,7 +4091,7 @@ msgstr "מיוחד:"
 #: code:addons/web/static/src/views/graph/graph_view.xml:0
 #, python-format
 msgid "Stacked"
-msgstr ""
+msgstr "מונח בערימה חסרת סדר"
 
 #. module: web
 #. openerp-web
@@ -4454,7 +4460,7 @@ msgstr "לא ניתן למצוא Wkhtmltopdf במערכת זו. הדוח יוצ�
 #: code:addons/web/static/src/legacy/js/views/list/list_controller.js:0
 #, python-format
 msgid "Unarchive"
-msgstr ""
+msgstr "הוצא מהארכיון"
 
 #. module: web
 #. openerp-web
@@ -4742,7 +4748,7 @@ msgstr "סוג תצוגה"
 #: code:addons/web/static/src/legacy/xml/base.xml:0
 #, python-format
 msgid "View switcher"
-msgstr ""
+msgstr "מחליף תצוגה"
 
 #. module: web
 #. openerp-web

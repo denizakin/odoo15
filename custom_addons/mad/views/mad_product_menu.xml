@@ -3,7 +3,7 @@
     <record id="menu_mad_stok_stok_hizmet_action" model="ir.actions.act_window">
         <field name="name">Stok/Hizmet</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">product.product</field>
+        <field name="res_model">product.template</field>
         <field name="view_mode">tree,kanban,form</field>
         <field name="view_ids"
                eval="[(5, 0, 0),
@@ -47,7 +47,7 @@
     <menuitem id="menu_mad_stok_hizmet_kartlar"
               name="Kartlar"
               parent="menu_mad_stok_hizmet_main"
-              sequence="10"
+              sequence="1"
     />
 
     <menuitem id="menu_mad_stok_stok_hizmet"
@@ -57,12 +57,11 @@
               sequence="1"
     />
 
-    <menuitem id="product_product_menu"
+    <menuitem id="menu_mad_stok_stok_hizmet_cesitleri"
               name="Stok/Hizmet Çeşitleri"
               parent="menu_mad_stok_hizmet_kartlar"
               action="menu_mad_stok_cesit_action"
               sequence="2"
-              groups="product.group_product_variant"
     />
 
     <menuitem id="menu_mad_stok_depo"
@@ -75,12 +74,18 @@
     <menuitem id="menu_mad_stok_hizmet_hareketler"
               name="Hareketler"
               parent="menu_mad_stok_hizmet_main"
-              sequence="10"
+              sequence="2"
     />
 
     <menuitem id="menu_mad_stok_hizmet_listeler"
               name="Listeler"
               parent="menu_mad_stok_hizmet_main"
-              sequence="10"
+              sequence="3"
+    />
+
+    <menuitem id="menu_mad_stok_hizmet_raporlar"
+              name="Raporlar"
+              parent="menu_mad_stok_hizmet_main"
+              sequence="4"
     />
 </odoo>

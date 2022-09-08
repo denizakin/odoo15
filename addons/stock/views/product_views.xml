@@ -110,7 +110,7 @@
                 </xpath>
                 <xpath expr="//group[@name='group_lots_and_weight']" position="before">
                     <field name="has_available_route_ids" invisible="1"/>
-                    <group invisible="1" string="Operations" name="operations">
+                    <group string="Operations" name="operations">
                         <label for="route_ids" attrs="{'invisible': [('type', '=', 'service')]}"/>
                         <div>
                             <field name="route_ids" class="mb-0" widget="many2many_checkboxes" attrs="{'invisible': ['|', ('has_available_route_ids', '=', False), ('type', '=', 'service')]}"/>
@@ -122,11 +122,11 @@
                     </group>
                 </xpath>
                 <xpath expr="//group[@name='group_lots_and_weight']" position="after">
-                    <group invisible="1" string="Traceability" name="traceability" groups="stock.group_production_lot"
+                    <group string="Traceability" name="traceability" groups="stock.group_production_lot"
                            attrs="{'invisible': [('type', '=', 'consu')]}">
                         <field name="tracking" widget="radio" attrs="{'invisible': [('type', '=', 'service')]}"/>
                     </group>
-                     <group invisible="1" string="Counterpart Locations" name="stock_property" groups="base.group_no_one">
+                     <group string="Counterpart Locations" name="stock_property" groups="base.group_no_one">
                         <field name="property_stock_production"/>
                         <field name="property_stock_inventory"/>
                     </group>
@@ -451,7 +451,7 @@
             </field>
         </record>
 
-    <record id="\" model="ir.actions.act_window">
+    <record id="product_template_action_product" model="ir.actions.act_window">
         <field name="name">Products</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.template</field>
