@@ -1,9 +1,17 @@
 from odoo import models, fields
 
 
-class Product(models.Model):
-    _inherit = 'product.product'
-    _description = "Product özelleştirmeleri"
+class Template(models.Model):
+    _inherit = 'product.template'
+    _description = "Product Template özelleştirmeleri"
+    gtipno = fields.Char('GTİP No')
+    tag_ids = fields.Many2many(
+        string="Tags",
+        comodel_name="mad.product.tag",
+        relation="product_mad_product_tag_rel",
+        column1="tag_id",
+        column2="product_id",
+    )
 
     # kart view'ını iki modelden de açtığımız için ikisinde de bu action mevcut(hem template hem product'tan açıyoruz)
     def action_gtip_no_linki(self):
