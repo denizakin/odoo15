@@ -39,7 +39,7 @@
             (0, 0, {'view_mode': 'form', 'view_id': ref('mad_product_form_view')})]"/>
     </record>
 
-    <!--record id="mad_product_tag_search_view" model="ir.ui.view">
+    <record id="mad_product_tag_search_view" model="ir.ui.view">
         <field name="name">mad.product.tag.search</field>
         <field name="model">mad.product.tag</field>
         <field name="arch" type="xml">
@@ -54,14 +54,14 @@
                 />
             </search>
         </field>
-    </record-->
+    </record>
 
     <record id="menu_mad_product_tag_action" model="ir.actions.act_window">
         <field name="name">Etiketler</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mad.product.tag</field>
         <field name="view_mode">tree,form</field>
-        <!--field name="search_view_id" ref="mad_product_tag_search_view" /-->
+        <field name="search_view_id" ref="mad_product_tag_search_view" />
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Yeni bir stok/hizmet etiketi için tıklayın.

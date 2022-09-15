@@ -27,11 +27,11 @@
                             <field
                                 name="name"
                                 default_focus="true"
-                                placeholder="Accessories &amp; Supplies"
+                                placeholder="Aksesuar &amp; Hammadde"
                             />
                         </h1>
                         <div name="post_title" class="o_row">
-                            <field name="parent_id" placeholder="Electronics" />
+                            <field name="parent_id" placeholder="Elektronik" />
                         </div>
                     </div>
                     <group />

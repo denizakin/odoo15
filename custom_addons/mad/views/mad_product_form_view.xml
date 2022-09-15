@@ -103,6 +103,7 @@
                                 <group name="codes">
                                     <field name="default_code"/>
                                     <field name="barcode"/>
+                                    <field name="tag_ids" widget="many2many_tags" options="{'no_create_edit': True, 'color_field': 'color'}"/>
                                 </group>
                             </group>
                             <group string="Şirket İçi Notlar">
