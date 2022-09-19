@@ -30,9 +30,10 @@
                                 placeholder="Aksesuar &amp; Hammadde"
                             />
                         </h1>
-                        <div name="post_title" class="o_row">
-                            <field name="parent_id" placeholder="Elektronik" />
-                        </div>
+                        <field name="color" widget="color_picker"/>
+                        <!--div name="post_title" class="o_row">
+                            <field name="parent_id" placeholder="Üst etiketler" />
+                        </div-->
                     </div>
                     <group />
                 </sheet>
@@ -44,7 +45,8 @@
         <field name="model">mad.product.tag</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="display_name" />
+                <field string="Etiket" name="display_name" />
+                <field string="Renk" name="color" widget="color_picker"/>
             </tree>
         </field>
     </record>

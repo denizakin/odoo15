@@ -9,8 +9,8 @@ class Template(models.Model):
         string="Tags",
         comodel_name="mad.product.tag",
         relation="product_mad_product_tag_rel",
-        column1="tag_id",
-        column2="product_id",
+        ondelete='restrict',
+        help="Ürün ve hizmetleri gruplamak için etiket kullanabilirsiniz"
     )
 
     # kart view'ını iki modelden de açtığımız için ikisinde de bu action mevcut(hem template hem product'tan açıyoruz)

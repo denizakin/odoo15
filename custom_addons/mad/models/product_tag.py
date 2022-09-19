@@ -1,27 +1,7 @@
-#
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2013 Julius Network Solutions SARL <contact@julius.fr>
-#    Copyright (C) 2015 credativ ltd. <info@credativ.co.uk>
-#    Copyright (c) 2019 Matteo Bilotta <mbilotta@linkgroup.it>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.osv import expression
+from random import randint
 
 
 class ProductTag(models.Model):
@@ -31,13 +11,17 @@ class ProductTag(models.Model):
     _parent_order = "name"
     _parent_store = True
 
+    def _get_default_color(self):
+        return randint(1, 11)
+
     name = fields.Char("Tag Name", required=True, translate=True)
     active = fields.Boolean(
         help="The active field allows you to hide the tag without removing it.",
         default=True,
     )
-    color = fields.Integer(string="Color index", default=0)
-    image = fields.Binary(sintrg="Image")
+
+    color = fields.Integer(string="Renk seçimi", default=_get_default_color)
+    image = fields.Binary(string="Resim")
 
     parent_id = fields.Many2one(
         string="Parent Tag", comodel_name="mad.product.tag", index=True, ondelete="cascade"
@@ -47,7 +31,7 @@ class ProductTag(models.Model):
     )
     parent_path = fields.Char(index=True)
 
-    @api.constrains("parent_id")
+    '''@api.constrains("parent_id")
     def _check_parent_id(self):
         if not self._check_recursion():
             raise ValidationError(_("You cannot create recursive product tags."))
@@ -89,4 +73,4 @@ class ProductTag(models.Model):
 
         tag_ids = self._search(args, limit=limit, access_rights_uid=name_get_uid)
 
-        return self.browse(tag_ids).name_get()
+        return self.browse(tag_ids).name_get()'''
